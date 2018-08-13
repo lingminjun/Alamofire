@@ -111,7 +111,7 @@ extension DataRequest {
     ///
     /// - returns: The request.
     @discardableResult
-    public func response(queue: DispatchQueue? = nil, completionHandler: @escaping (DefaultDataResponse) -> Void) -> Self {
+    public func response(queue: DispatchQueue? = DispatchQueue.main /*采用默认值方式*/, completionHandler: @escaping (DefaultDataResponse) -> Void) -> Self {
         delegate.queue.addOperation {
             let block:() -> Swift.Void = {
                 var dataResponse = DefaultDataResponse(
@@ -148,7 +148,7 @@ extension DataRequest {
     /// - returns: The request.
     @discardableResult
     public func response<T: DataResponseSerializerProtocol>(
-        queue: DispatchQueue? = nil,
+        queue: DispatchQueue? = DispatchQueue.main /*采用默认值方式*/,
         responseSerializer: T,
         completionHandler: @escaping (DataResponse<T.SerializedObject>) -> Void)
         -> Self
@@ -193,7 +193,7 @@ extension DownloadRequest {
     /// - returns: The request.
     @discardableResult
     public func response(
-        queue: DispatchQueue? = nil,
+        queue: DispatchQueue? = DispatchQueue.main /*采用默认值方式*/,
         completionHandler: @escaping (DefaultDownloadResponse) -> Void)
         -> Self
     {
@@ -235,7 +235,7 @@ extension DownloadRequest {
     /// - returns: The request.
     @discardableResult
     public func response<T: DownloadResponseSerializerProtocol>(
-        queue: DispatchQueue? = nil,
+        queue: DispatchQueue? = DispatchQueue.main /*采用默认值方式*/,
         responseSerializer: T,
         completionHandler: @escaping (DownloadResponse<T.SerializedObject>) -> Void)
         -> Self
